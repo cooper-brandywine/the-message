@@ -3,22 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Message</title>
+  <title>chat</title>
   <link rel="stylesheet" href="skin.css">
   <style>
     body {
-        margin: auto;
-        width: 95%;
-        height: 100%;
-        max-width: 600px;
+      margin: auto;
+      width: 95%;
+      height: 100%;
+      max-width: 600px;
     }
     #display {
       border: 5px solid var(--default-color);
       padding: 10px;
       height: 50dvh;
-      overflow: scroll;
-      margin: 1rem 0rem;
+      overflow-y: auto;
+      margin: 1rem 0;
       border-radius: var(--input-border-radius);
+    }
+    .post {
+      padding: 0.5rem;
+      border-bottom: 1px solid #666;
+    }
+    .post-message {
+      font-size: 16px;
+    }
+    .post-timestamp {
+      font-size: 12px;
+      color: #666;
+      margin: 1rem 0rem 0rem 0rem;
     }
     textarea {
       width: 100%;
@@ -30,20 +42,18 @@
     button {
       padding: 10px 20px;
       font-size: 16px;
-      margin: 1rem 0rem;
+      margin: 1rem 0;
     }
     button:disabled {
-    cursor: not-allowed;
-    opacity: 0.25;
+      cursor: not-allowed;
+      opacity: 0.25;
     }
-
     #timer {
-    position: absolute;
-    min-height: 1rem;
-    margin: 1rem 0rem;
-    font-weight: bold;
-    color: red;
-    bottom: 0px;
+      position: absolute;
+      font-weight: bold;
+      color: red;
+      margin-bottom: 1rem;
+      bottom: 0;
     }
   </style>
   <!-- Firebase libraries (compat version) -->
@@ -51,100 +61,14 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
 </head>
 <body>
-<div id="timer"></div>
-  <div id="display">Loading current message...</div>
+    <h1>chat</h1>
+  <div id="timer"></div>
+  <div id="display">Loading posts...</div>
   <form id="postForm">
-    <textarea
-      id="postText"
-      maxlength="256"
-      placeholder="Enter your message (max 256 characters)"
-    ></textarea>
+    <textarea id="postText" maxlength="256" placeholder="Enter your message (max 256 characters)"></textarea>
     <br />
     <button type="submit">Post</button>
   </form>
-
-  <script>
-    // Replace with your Firebase project's configuration.
-    const firebaseConfig = {
-      apiKey: "AIzaSyBDLxkVBqmQA44SPMFZ7hxGEx2Uh02H2ds",
-      authDomain: "edit-post.firebaseapp.com",
-      projectId: "edit-post",
-      storageBucket: "edit-post.firebasestorage.app",
-      messagingSenderId: "5893895762",
-      appId: "1:5893895762:web:cf4b5744e4d382ec3d118b",
-      measurementId: "G-EK4BYMJW9C"
-    };
-
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
-
-    // Create a reference to the "post" node in your Realtime Database.
-    const postRef = db.ref('post');
-
-    // Function to update UI based on the current post data.
-    function updateUI(data) {
-      if (data) {
-        // Display the message.
-        document.getElementById('display').textContent = data.message || "No message found.";
-        // Check if a lock is active.
-        const lockUntil = data.lockUntil || 0;
-        const now = Date.now();
-        if (now < lockUntil) {
-          // Disable the form.
-          document.getElementById('postText').disabled = true;
-          document.querySelector('#postForm button').disabled = true;
-          // Start a countdown.
-          const secondsLeft = Math.ceil((lockUntil - now) / 1000);
-          document.getElementById('timer').textContent = "Next post available in " + secondsLeft + " seconds.";
-        } else {
-          // Re-enable the form.
-          document.getElementById('postText').disabled = false;
-          document.querySelector('#postForm button').disabled = false;
-          document.getElementById('timer').textContent = "";
-        }
-      } else {
-        document.getElementById('display').textContent = "No message found.";
-      }
-    }
-
-    // Listen for changes and update the page.
-    postRef.on('value', (snapshot) => {
-      const data = snapshot.val();
-      updateUI(data);
-    });
-
-    // Set up an interval to update the countdown timer every second.
-    setInterval(() => {
-      postRef.once('value').then((snapshot) => {
-        const data = snapshot.val();
-        updateUI(data);
-      });
-    }, 1000);
-
-    // Handle form submission to post a new message.
-    document.getElementById('postForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const text = document.getElementById('postText').value.trim();
-      if (text.length > 256) {
-        alert("Message exceeds 256 characters.");
-        return;
-      }
-      // Create the post object with a 1-minute lock.
-      const postObj = {
-        message: text,
-        lockUntil: Date.now() + 60000  // Lock for 60 seconds
-      };
-      // Overwrite the current post.
-      postRef.set(postObj)
-        .then(() => {
-          document.getElementById('postText').value = "";
-        })
-        .catch((error) => {
-          alert("Error posting message.");
-          console.error(error);
-        });
-    });
-  </script>
+<script src="scrrr.js"></script>
 </body>
 </html>
