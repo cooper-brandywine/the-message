@@ -1,0 +1,234 @@
+/* =======================================
+   Global Variables & Consolidated Defaults
+   ======================================= */
+:root {
+  /* Global typography & colors */
+  --default-font-family: monospace;
+  --default-line-height: 1;
+  --default-color: #fff;
+  --default-bg-color: #000;
+
+  /* Spacing */
+  --default-margin: 0;
+  --default-padding: 0;
+
+  /* Body specific */
+  --body-margin: 12px;
+
+  /* Headings */
+  --heading-margin-top: 0.67em;
+  --heading-margin-bottom: 0.67em;
+  --heading-font-weight: bold;
+
+  /* Paragraphs */
+  --paragraph-margin: 1em 0;
+
+  /* Lists */
+  --list-margin: 1em 0;
+  --list-padding-left: 40px;
+  --list-item-margin-bottom: 0.25em;
+
+  /* Links */
+  --link-color: var(--default-color);
+  --link-text-decoration: underline;
+
+  /* Blockquote */
+  --blockquote-margin: 1em 40px;
+  --blockquote-padding-left: 1em;
+  --blockquote-border-color: #ccc;
+  --blockquote-border-width: 4px;
+
+  /* Code & Preformatted */
+  --code-font-family: monospace;
+  --code-font-size: 0.9em;
+  --code-bg-color: #f8f8f8;
+  --code-padding: 0.2em 0.4em;
+  --code-border-radius: 3px;
+
+  /* Tables */
+  --table-border: 1px solid #ccc;
+  --table-padding: 0.5em;
+  --table-width: 100%;
+
+  /* Forms (Inputs, Textareas, Selects, Buttons) */
+  --form-font-family: var(--default-font-family);
+  --form-font-size: 1em;
+  --input-border: 5px solid var(--default-color);
+  --input-border-radius: 4px;
+  --input-padding: 0.5em;
+
+  /* Horizontal Rule */
+  --hr-border-top: 1px solid #ccc;
+  --hr-margin: 1em 0;
+
+  /* Figures */
+  --figure-margin: 1em 40px;
+  --figcaption-font-size: 0.9em;
+  --figcaption-color: #666;
+  --figcaption-text-align: center;
+}
+
+/* =======================================
+   Base Elements
+   ======================================= */
+html {
+  font-family: var(--default-font-family);
+  font-size: var(--default-font-size);
+  line-height: var(--default-line-height);
+  color: var(--default-color);
+  background-color: var(--default-bg-color);
+}
+
+body {
+  margin: var(--body-margin);
+  padding: var(--default-padding);
+}
+
+/* =======================================
+   Headings
+   ======================================= */
+h1, h2, h3, h4, h5, h6 {
+  margin-top: var(--heading-margin-top);
+  margin-bottom: var(--heading-margin-bottom);
+  font-weight: var(--heading-font-weight);
+}
+
+/* =======================================
+   Text Elements
+   ======================================= */
+p {
+  margin: var(--paragraph-margin);
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: var(--link-text-decoration);
+}
+
+/* =======================================
+   Lists
+   ======================================= */
+ul, ol {
+  margin: var(--list-margin);
+  padding-left: var(--list-padding-left);
+}
+
+li {
+  margin-bottom: var(--list-item-margin-bottom);
+}
+
+/* =======================================
+   Blockquote
+   ======================================= */
+blockquote {
+  margin: var(--blockquote-margin);
+  padding-left: var(--blockquote-padding-left);
+  border-left: var(--blockquote-border-width) solid var(--blockquote-border-color);
+}
+
+/* =======================================
+   Preformatted & Code
+   ======================================= */
+pre, code {
+  font-family: var(--code-font-family);
+  font-size: var(--code-font-size);
+  background-color: var(--code-bg-color);
+  padding: var(--code-padding);
+  border-radius: var(--code-border-radius);
+}
+
+/* =======================================
+   Tables
+   ======================================= */
+table {
+  border-collapse: collapse;
+  width: var(--table-width);
+}
+
+th, td {
+  border: var(--table-border);
+  padding: var(--table-padding);
+  text-align: left;
+}
+
+/* =======================================
+   Forms
+   ======================================= */
+fieldset {
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+  border: 1px solid #c0c0c0;
+}
+
+legend {
+  padding: 0 2px;
+  font-weight: bold;
+}
+
+label {
+  display: inline-block;
+  margin-bottom: 0.5em;
+}
+
+input, textarea, select, button {
+  font-family: var(--form-font-family);
+  font-size: var(--form-font-size);
+  border: var(--input-border);
+  border-radius: var(--input-border-radius);
+  padding: var(--input-padding);
+  background: var(--default-bg-color);
+  color: var(--default-color);
+}
+
+/* =======================================
+   Other Common Elements
+   ======================================= */
+hr {
+  border: 0;
+  border-top: var(--hr-border-top);
+  margin: var(--hr-margin);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+figure {
+  margin: var(--figure-margin);
+}
+
+figcaption {
+  text-align: var(--figcaption-text-align);
+  font-size: var(--figcaption-font-size);
+  color: var(--figcaption-color);
+}
+
+button {
+  cursor: pointer;
+}
+
+/* =======================================
+   Inline Elements
+   ======================================= */
+strong {
+  font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}
+
+small {
+  font-size: 80%;
+}
+
+sub {
+  vertical-align: sub;
+  font-size: 75%;
+}
+
+sup {
+  vertical-align: super;
+  font-size: 75%;
+}
